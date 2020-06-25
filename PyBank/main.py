@@ -40,24 +40,48 @@ with open(input_file_path) as csvfile:
 
 avg_change = round(change_total/(count_months-1),2)
 
-print("\n\n````text")
-print("Financial Analysis\n--------------------------")
-print(f"Total Months:  {count_months}")
-print(f"Total:  ${net_profit}")
-print(f"Average Change:  {'${:,.2f}'.format(avg_change)}")
-print(f"Greatest Increase in Profits:  {greatest_inc['month']}  ({'${:.0f}'.format(greatest_inc['value'])})")
-print(f"Greatest Decrease in Profits:  {greatest_dec['month']}  ({'${:.0f}'.format(greatest_dec['value'])}) ")
-print("`````\n")
+text_list = []
+text_list.append("\n````text")
+text_list.append("Financial Analysis\n--------------------------")
+text_list.append(f"Total Months:  {count_months}")
+text_list.append(f"Total:  ${net_profit}")
+text_list.append(f"Average Change:  {'${:,.2f}'.format(avg_change)}")
+text_list.append(f"Greatest Increase in Profits:  {greatest_inc['month']}  ({'${:.0f}'.format(greatest_inc['value'])})")
+text_list.append(f"Greatest Decrease in Profits:  {greatest_dec['month']}  ({'${:.0f}'.format(greatest_dec['value'])}) ")
+text_list.append("`````\n")
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-output_path = os.path.join("Analysis", "analysis.txt")
+for i in range(len(text_list)):
+    print(text_list[i])
+
+os.chdir(os.path.dirname(os.path.abspath(__file__)))    # go to the current path
+output_path = os.path.join("Analysis", "analysis.txt")  # set path for the output file
 
 txt_writer = open(output_path, "w")
-txt_writer.write("\n`````text")
-txt_writer.write("\nFinancial Analysis\n--------------------------")
-txt_writer.write(f"\nTotal Months:  {count_months}")
-txt_writer.write(f"\nTotal:  ${net_profit}")
-txt_writer.write(f"\nAverage Change:  {'${:,.2f}'.format(avg_change)}")
-txt_writer.write(f"\nGreatest Increase in Profits:  {greatest_inc['month']}  ({'${:.0f}'.format(greatest_inc['value'])})")
-txt_writer.write(f"\nGreatest Decrease in Profits:  {greatest_dec['month']}  ({'${:.0f}'.format(greatest_dec['value'])}) ")
-txt_writer.write("\n`````")
+for i in range(len(text_list)):
+    txt_writer.write(text_list[i])
+    txt_writer.write("\n")
+
+
+
+#--------------- Method 2  to print -------------------------
+# print("\n\n````text")
+# print("Financial Analysis\n--------------------------")
+# print(f"Total Months:  {count_months}")
+# print(f"Total:  ${net_profit}")
+# print(f"Average Change:  {'${:,.2f}'.format(avg_change)}")
+# print(f"Greatest Increase in Profits:  {greatest_inc['month']}  ({'${:.0f}'.format(greatest_inc['value'])})")
+# print(f"Greatest Decrease in Profits:  {greatest_dec['month']}  ({'${:.0f}'.format(greatest_dec['value'])}) ")
+# print("`````\n")
+
+# os.chdir(os.path.dirname(os.path.abspath(__file__)))
+# output_path = os.path.join("Analysis", "analysis.txt")
+# txt_writer = open(output_path, "w")
+
+# txt_writer.write("\n`````text")
+# txt_writer.write("\nFinancial Analysis\n--------------------------")
+# txt_writer.write(f"\nTotal Months:  {count_months}")
+# txt_writer.write(f"\nTotal:  ${net_profit}")
+# txt_writer.write(f"\nAverage Change:  {'${:,.2f}'.format(avg_change)}")
+# txt_writer.write(f"\nGreatest Increase in Profits:  {greatest_inc['month']}  ({'${:.0f}'.format(greatest_inc['value'])})")
+# txt_writer.write(f"\nGreatest Decrease in Profits:  {greatest_dec['month']}  ({'${:.0f}'.format(greatest_dec['value'])}) ")
+# txt_writer.write("\n`````")
